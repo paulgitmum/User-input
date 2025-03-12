@@ -1,5 +1,5 @@
 const express = require("express");
-const escapeHtml = require("escape-html"); // ✅ Import escape-html for sanitization
+const escapeHtml = require("escape-html"); 
 const app = express();
 
 app.use(express.urlencoded({ extended: true })); 
@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.get("/search", (req, res) => {
     const query = req.query.query;
-    const safeQuery = escapeHtml(query); // ✅ Sanitize input before rendering
+    const safeQuery = escapeHtml(query); 
     res.send(`<h1>Results for: ${safeQuery}</h1>`);
 });
 
