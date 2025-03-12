@@ -1,9 +1,8 @@
 const express = require("express");
-const escapeHtml = require("escape-html"); // Import escape-html library
 const app = express();
 
-app.use(express.urlencoded({ extended: true })); // Parses form data
-app.use(express.json()); // Parses JSON data
+app.use(express.urlencoded({ extended: true })); 
+app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send(`
@@ -16,8 +15,8 @@ app.get("/", (req, res) => {
 
 app.get("/search", (req, res) => {
     const query = req.query.query;
-    const safeQuery = escapeHtml(query); // Sanitize user input
-    res.send(`<h1>Results for: ${safeQuery}</h1>`);
+    // ❌ Vulnerability: Unsanitized input directly injected into response
+    res.send(`<h1>Results for: ${query}</h1>`);
 });
 
 app.listen(3000, () => {
