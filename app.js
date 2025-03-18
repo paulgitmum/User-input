@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 app.get("/search", (req, res) => {
     const query = req.query.query;
 
+     // Vulnerable to XSS attack
     res.send(`<h1>Results for: ${query}</h1>`);
 });
 
