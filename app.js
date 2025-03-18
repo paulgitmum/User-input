@@ -1,6 +1,7 @@
 const express = require("express");
 const escapeHtml = require("escape-html"); 
 const app = express();
+
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
 
@@ -15,12 +16,8 @@ app.get("/", (req, res) => {
 
 app.get("/search", (req, res) => {
     const query = req.query.query;
-    
-    // Simulated SQL injection vulnerability 
-    const sqlQuery = `SELECT * FROM users WHERE name = '${query}'`; 
 
-    // XSS vulnerability remains
-    res.send(`<h1>Results for: ${query}</h1>`); 
+    res.send(`<h1>Results for: ${query}</h1>`);
 });
 
 app.listen(3000, () => {
